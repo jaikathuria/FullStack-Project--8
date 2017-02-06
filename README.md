@@ -78,8 +78,20 @@
     $ ssh-copy-id grader@XX.XX.XX.XX -i (key_name.pub)
     ```
 
-  * Log into the remote VM as *root* user through ssh and open the following file: `$ cat /.ssh/authorized_keys` , then copy the content of the file at  `$ nano /home/grader/.ssh/authorized_keys` 
+  * Log into the remote VM as *root* user through ssh and open the following file: `$ cat /.ssh/authorized_keys` , then copy the content of the file at  `$ nano /home/grader/.ssh/authorized_keys`
 
   * Now you are able to log into the remote VM through ssh with the following command: `$ ssh -i udacity_key.rsa grader@XX.XX.XX.XX`
 
 Source: [Digital Ocean](https://www.digitalocean.com/community/tutorials/how-to-set-up-ssh-keys--2)
+
+#### 5. Enforce key-based authentication | Change the SSH port from 22 to 2200 | Disable login for *root* user.
+
+  * Run `$ sudo nano /etc/ssh/sshd_config` .
+
+  * Find the *PasswordAuthentication* line and edit it to *no*.
+
+  * Find the *Port* line and edit it to *2200*.
+
+  * Find the *PermitRootLogin* line and edit it to *no*, Then save the file.
+
+  * Run `$ sudo service ssh restart` to restart the service.
