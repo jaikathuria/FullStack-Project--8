@@ -95,3 +95,11 @@ Source: [Digital Ocean](https://www.digitalocean.com/community/tutorials/how-to-
   * Find the *PermitRootLogin* line and edit it to *no*, Then save the file.
 
   * Run `$ sudo service ssh restart` to restart the service.
+
+#### 6. Change timezone to UTC.
+
+  * Check the timezone with the date command. This will display the current timezone after the time. If it's not UTC change it like this:
+
+  ```
+    $ sudo timedatectl set-timezone UTC
+  ```
