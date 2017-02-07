@@ -230,7 +230,7 @@ Source: [Digital Ocean](https://www.digitalocean.com/community/tutorials/how-to-
     ```
      $ touch catalog.wsgi && nano catalog.wsgi
     ```
-    
+
     ```
     import sys
     import logging
@@ -244,4 +244,36 @@ Source: [Digital Ocean](https://www.digitalocean.com/community/tutorials/how-to-
     ```
      engine = create_engine('postgresql://catalog:password@localhost/catalog')
     ```
-  
+
+#### 14. Edit the default Virtual File with following content:
+
+  ```
+    $  sudo nano /etc/apache2/sites-available/000-default.conf
+  ```
+
+
+  ```
+  <VirtualHost *:80>
+    ServerName XX.XX.XX.XX
+    ServerAdmin jaikathuria@live.com
+    WSGIScriptAlias / /var/www/catalog/catalog.wsgi
+    <Directory /var/www/catalog/>
+        Order allow,deny
+        Allow from all
+    </Directory>
+    Alias /static /var/www/catalog/catalog/static
+    <Directory /var/www/catalog/static/>
+        Order allow,deny
+        Allow from all
+    </Directory>
+    ErrorLog ${APACHE_LOG_DIR}/error.log
+    LogLevel warn
+    CustomLog ${APACHE_LOG_DIR}/access.log combined
+  </VirtualHost>
+  ```
+
+#### 15. Restart Apache to launch the app
+
+   ```
+    $ sudo service apache2 restart
+   ```
