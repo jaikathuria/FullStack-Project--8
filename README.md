@@ -122,4 +122,17 @@ Source: [Digital Ocean](https://www.digitalocean.com/community/tutorials/how-to-
     $ sudo ufw allow ntp
     $ sudo ufw enable
   ```
- 
+
+#### 9. Configure cron scripts to automatically manage package updates
+
+  * Install *unattended-upgrades* if not already installed:
+
+  ```
+    $ sudo apt-get install unattended-upgrades`
+  ```
+
+  * To enable it, do:
+
+  ```
+    $ sudo dpkg-reconfigure --priority=low unattended-upgrades`
+  ```
