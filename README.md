@@ -136,3 +136,12 @@ Source: [Digital Ocean](https://www.digitalocean.com/community/tutorials/how-to-
   ```
     $ sudo dpkg-reconfigure --priority=low unattended-upgrades`
   ```
+
+#### 10. Install and configur Apache2 and mod-wsgi and Git
+
+  *  Run the following command to install apache2 and mod-wsgi and git:
+
+  ```
+    $ sudo apt-get install apache2 libapache2-mod-wsgi git
+    $ sudo a2enmod wsgi
+  ```
