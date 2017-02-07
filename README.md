@@ -86,6 +86,7 @@ Source: [Digital Ocean](https://www.digitalocean.com/community/tutorials/how-to-
 
 #### 5. Enforce key-based authentication | Change the SSH port from 22 to 2200 | Disable login for *root* user.
 
+
   * Run `$ sudo nano /etc/ssh/sshd_config` .
 
   * Find the *PasswordAuthentication* line and edit it to *no*.
@@ -103,3 +104,22 @@ Source: [Digital Ocean](https://www.digitalocean.com/community/tutorials/how-to-
   ```
     $ sudo timedatectl set-timezone UTC
   ```
+
+#### 7. Update all currently installed packages
+
+  ```
+    $ sudo apt-get update
+    $ sudo apt-get upgrade
+  ```
+
+#### 8. Configure the Uncomplicated Firewall (UFW)
+
+  ```
+    $ sudo ufw default deny incoming
+    $ sudo ufw default allow outgoing
+    $ sudo ufw allow 2200/tcp
+    $ sudo ufw allow www
+    $ sudo ufw allow ntp
+    $ sudo ufw enable
+  ```
+ 
