@@ -11,7 +11,7 @@
 
 > ii. Properly securing application ensures, application remains stable and that user’s data is safe.
 
-### Steps Followed to Configur Linux server
+### Steps Followed to Configure Linux server
 #### 1. Create Development Environment Instance.
 
   * [Create new development environment.](https://www.udacity.com/account#!/development_environmet)
@@ -137,7 +137,7 @@ Source: [Digital Ocean](https://www.digitalocean.com/community/tutorials/how-to-
     $ sudo dpkg-reconfigure --priority=low unattended-upgrades`
   ```
 
-#### 10. Install and configur Apache2 and mod-wsgi and Git
+#### 10. Install and Configure Apache2 and mod-wsgi and Git
 
   *  Run the following command to install apache2 and mod-wsgi and git:
 
@@ -145,3 +145,50 @@ Source: [Digital Ocean](https://www.digitalocean.com/community/tutorials/how-to-
     $ sudo apt-get install apache2 libapache2-mod-wsgi git
     $ sudo a2enmod wsgi
   ```
+
+#### 11. Install and configure PostgreSQL
+
+  * Installing PostgreSQL Python dependencies:
+
+  ```
+    $ sudo apt-get install libpq-dev python-dev
+  ```
+
+  * Installing PostgreSQL:
+
+  ```
+    $ sudo apt-get install postgresql postgresql-contrib
+  ```
+
+  * Check if no remote connections are allowed :
+
+  ```
+    $ sudo cat /etc/postgresql/9.3/main/pg_hba.conf
+  ```
+
+  * Login as *postgres* User (Default User), and get into PostgreSQL shell:
+
+  ```
+    $ sudo su - postgres
+    $ psql
+  ```
+
+   * Create a new User named *catalog*:  `# CREATE USER catalog WITH PASSWORD 'password';`
+
+   * Create a new DB named *catalog*: `# CREATE DATABASE catalog WITH OWNER catalog;`
+
+   * Connect to the database *catalog* : `# \c catalog`
+
+   * Revoke all rights: `# REVOKE ALL ON SCHEMA public FROM public;`
+
+   * Lock down the permissions only to user *catalog*: `# GRANT ALL ON SCHEMA public TO catalog;`
+
+   * Log out from PostgreSQL: `# \q`. Then return to the *grader* user: `$ exit`
+   
+  * Inside the Flask application, the database connection is now performed with:
+
+  ```
+  engine = create_engine('postgresql://catalog:sillypassword@localhost/catalog')
+  ```
+
+  
