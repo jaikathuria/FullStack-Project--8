@@ -11,6 +11,13 @@
 
 > ii. Properly securing application ensures, application remains stable and that user’s data is safe.
 
+##### Link to [SongCatalog](ec2-52-33-52-40.us-west-2.compute.amazonaws.com)
+
+  ```
+    IP Address: 52.33.52.40
+    SSH Port: 2200
+  ```
+
 ### Steps Followed to Configure Linux server
 #### 1. Create Development Environment Instance.
 
@@ -198,6 +205,7 @@ Source: [Digital Ocean](https://www.digitalocean.com/community/tutorials/how-to-
     $ sudo pip install Flask
     $ sudo pip install httplib2 oauth2client sqlalchemy psycopg2 sqlalchemy_utils
   ```
+Source: [Flask Documentation](http://flask.pocoo.org/docs/0.12/installation/)
 
 #### 13. Clone the Catalog app from Github
 
@@ -271,6 +279,7 @@ Source: [Digital Ocean](https://www.digitalocean.com/community/tutorials/how-to-
     CustomLog ${APACHE_LOG_DIR}/access.log combined
   </VirtualHost>
   ```
+Source: [Digital Ocean](https://www.digitalocean.com/community/tutorials/how-to-set-up-apache-virtual-hosts-on-ubuntu-14-04-lts)
 
 #### 15. Restart Apache to launch the app
 
