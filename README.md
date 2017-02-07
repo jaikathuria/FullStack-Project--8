@@ -184,11 +184,64 @@ Source: [Digital Ocean](https://www.digitalocean.com/community/tutorials/how-to-
    * Lock down the permissions only to user *catalog*: `# GRANT ALL ON SCHEMA public TO catalog;`
 
    * Log out from PostgreSQL: `# \q`. Then return to the *grader* user: `$ exit`
-   
+
   * Inside the Flask application, the database connection is now performed with:
 
   ```
   engine = create_engine('postgresql://catalog:sillypassword@localhost/catalog')
   ```
 
+#### 12. Install Flask and other dependencies
+
+  ```
+    $ sudo apt-get install python-pip
+    $ sudo pip install Flask
+    $ sudo pip install httplib2 oauth2client sqlalchemy psycopg2 sqlalchemy_utils
+  ```
+
+#### 13. Clone the Catalog app from Github
+
+  * Make a *catalog* named directory in */var/www*
+
+    ```
+      $ sudo mkdir /var/www/catalog
+    ```
+
+  * Change the owner of the directory *catalog*
+
+    ```
+     $ sudo chown -R grader:grader /var/www/catalog
+    ```
+
+  * Clone the *SongCatalog* to the catalog directory:
+
+    ```
+     $ git clone https://github.com/jaikathuria/FullStack-Project--8.git catalog
+    ```
+
+  * Change the branch of repo *SongCatalog*  to *production*:
+
+    ```
+     $ cd catalog && git checkout production
+    ```
+
+  * Make a catalog.wsgi file to serve the application over the mod_wsgi. with content:
+
+    ```
+     $ touch catalog.wsgi && nano catalog.wsgi
+    ```
+    
+    ```
+    import sys
+    import logging
+    logging.basicConfig(stream=sys.stderr)
+    sys.path.insert(0, "/var/www/catalog/")
+
+    from SongCatalog import app as application
+    ```
+  * Inside *SongCatalog.py*  database connection is now performed with:
+
+    ```
+     engine = create_engine('postgresql://catalog:password@localhost/catalog')
+    ```
   
